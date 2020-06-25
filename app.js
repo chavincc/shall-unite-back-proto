@@ -30,6 +30,9 @@ io.on("connection", (socket) => {
     console.log("Client disconnected");
     clearInterval(interval);
   });
-});
 
+  socket.on("INTRODUCE", (name) => {
+    console.log("name", name);
+  });
+});
 server.listen(port, () => console.log(`Listening on port ${port}`));
