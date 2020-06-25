@@ -31,7 +31,7 @@ const io = socketIo(server); // < Interesting!
 
 let interval;
 io.on(socketEvent.connection, (socket) => {
-  onConnection(interval);
+  onConnection(interval, socket);
 
   socket.on(socketEvent.disconnect, onDisconnect);
 

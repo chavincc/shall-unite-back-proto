@@ -1,4 +1,4 @@
-const onConnection = (interval) => {
+const onConnection = (interval, socket) => {
   console.log("New client connected");
   if (interval) {
     clearInterval(interval);
