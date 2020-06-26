@@ -15,6 +15,7 @@ const socketEvent = {
   connection: "connection",
   disconnect: "disconnect",
   INTRODUCE: "INTRODUCE",
+  QUERY_READY: "QUERY_READY",
 };
 
 module.exports = {

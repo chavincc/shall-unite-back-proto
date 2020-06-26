@@ -36,12 +36,14 @@ const server = http.createServer(app);
 const io = socketIo(server);
 
 io.on(socketEvent.connection, (socket) => {
-  socket.on(socketEvent.INTRODUCE, (username) => {
-    onIntroduce(socket, username);
+  socket.on(socketEvent.INTRODUCE, async (username) => {
+    await onIntroduce(socket, username);
+    io.emit(socketEvent.QUERY_READY);
   });
 
-  socket.on(socketEvent.disconnect, () => {
-    onDisconnect(socket.username);
+  socket.on(socketEvent.disconnect, async () => {
+    await onDisconnect(socket.username);
+    io.emit(socketEvent.QUERY_READY);
   });
 });
 server.listen(port, () => console.log(`Listening on port ${port}`));
