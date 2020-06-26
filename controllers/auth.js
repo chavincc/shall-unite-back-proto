@@ -29,7 +29,17 @@ const logoutController = async (req, res) => {
   res.status(200).clearCookie("username").send("log out");
 };
 
+const getAuthController = async (req, res) => {
+  const { username } = req.cookies;
+  if (!username) {
+    return res.status(401).send("unauthorized");
+  } else {
+    return res.status(200).json(username);
+  }
+};
+
 module.exports = {
   loginController,
   logoutController,
+  getAuthController,
 };
