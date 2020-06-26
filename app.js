@@ -7,6 +7,7 @@ require("dotenv").config();
 const port = process.env.PORT || 4001;
 const indexRoutes = require("./routes/index");
 const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/user");
 const {
   onDisconnect,
   onIntroduce,
@@ -28,6 +29,7 @@ app.use(bodyParser.json());
 
 app.use(indexRoutes);
 app.use("/auth", authRoutes);
+app.use("/user", userRoutes);
 
 const server = http.createServer(app);
 
