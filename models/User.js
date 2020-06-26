@@ -9,6 +9,11 @@ const UserSchema = new Mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+    isOnline: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
   },
   { collection: "user" }
 );

@@ -9,6 +9,9 @@ Mongoose.connect(DATABASE_URL, {
   useUnifiedTopology: true,
 });
 Mongoose.set("useCreateIndex", true);
+Mongoose.set("useNewUrlParser", true);
+Mongoose.set("useFindAndModify", false);
+Mongoose.set("useUnifiedTopology", true);
 
 module.exports = {
   User: Mongoose.model("User", UserSchema),

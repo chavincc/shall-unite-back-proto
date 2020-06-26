@@ -8,7 +8,6 @@ const port = process.env.PORT || 4001;
 const indexRoutes = require("./routes/index");
 const authRoutes = require("./routes/auth");
 const {
-  onConnection,
   onDisconnect,
   onIntroduce,
   socketEvent,
@@ -34,12 +33,13 @@ const server = http.createServer(app);
 
 const io = socketIo(server);
 
-let interval;
 io.on(socketEvent.connection, (socket) => {
-  onConnection(interval, socket);
+  socket.on(socketEvent.INTRODUCE, (username) => {
+    onIntroduce(socket, username);
+  });
 
-  socket.on(socketEvent.disconnect, onDisconnect);
-
-  socket.on(socketEvent.introduce, onIntroduce);
+  socket.on(socketEvent.disconnect, () => {
+    onDisconnect(socket.username);
+  });
 });
 server.listen(port, () => console.log(`Listening on port ${port}`));
